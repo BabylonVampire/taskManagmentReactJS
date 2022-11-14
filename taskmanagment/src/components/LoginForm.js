@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import BasePageForm from "./BasePageForm";
 import {users, activeUser} from '../backend/users';
 import RegistrationForm from "./RegistrationForm";
 import root from '../backend/rootRender';
-import { ShowTasks } from "../backend/showAndCloseTasks";
+import {ShowTasks} from "../backend/showAndCloseTasks";
 
 const LoginForm = () => {
 

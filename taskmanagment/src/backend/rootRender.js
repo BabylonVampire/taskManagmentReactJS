@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 
 const container = document.getElementById('App');
 const root = createRoot(container);

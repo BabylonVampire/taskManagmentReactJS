@@ -1,5 +1,5 @@
 import React from 'react';
-import { users, activeUser } from './users';
+import {users, activeUser} from './users';
 import TaskForm from '../components/TaskForm';
 
 const ShowTasks = () => {

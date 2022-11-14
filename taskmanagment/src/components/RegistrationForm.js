@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {users} from '../backend/users';
 import User from '../backend/usersClass';
 import LoginForm from "./LoginForm";
 import root from '../backend/rootRender';
 
 const RegistrationForm = (props) => {
-
-    //let l = console.log;
 
     const [warning, setWarning] = useState('');
     const [name, setName] = useState('');

@@ -1,6 +1,6 @@
 import TaskForm from '../components/TaskForm';
 import {users, activeUser} from './users';
-import {ShowTasks, closeAllTasks} from './showAndCloseTasks';
+import {ShowTasks} from './showAndCloseTasks';
 import root from './rootRender';
 import BasePageForm from '../components/BasePageForm';
 

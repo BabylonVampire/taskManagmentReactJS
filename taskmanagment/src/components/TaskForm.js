@@ -10,7 +10,7 @@ const TaskForm = (prop) => {
                     <label>appointed by: {task.author}</label>
                 </div>
                 <div className="labelBox">
-                    <label id='timeLeft'>{task.remainingTime}</label>
+                    <label id='timeLeft'>{"Deadline: " + Math.abs(task.remainingTime()) + " day" + (Math.abs(task.remainingTime()) === 1 ? "" : "s") + (task.remainingTime() >= 0 ? " left" : " late")}</label>
                     <label id='diff'>Difficulty: {task.lvl}</label>
                 </div>
                 <label>Task description:</label>

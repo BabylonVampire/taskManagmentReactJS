@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {users, activeUser} from '../backend/users';
 import root from '../backend/rootRender';
 import BasePageForm from "./BasePageForm";
 import {Task, ID} from '../backend/taskClass';
-import { ShowTasks } from "../backend/showAndCloseTasks";
+import {ShowTasks} from "../backend/showAndCloseTasks";
 
 const CreateNewTaskForm = () => {
-
-    let l = console.log;
 
     let id = ID.id;
 
@@ -78,11 +76,7 @@ const CreateNewTaskForm = () => {
                 <div className="inputBox">
                     <label>Select difficulty of task </label>
                     <select className="input" id="lvl" value={diff} onChange={e => setDiff(e.target.value)}>
-                        {difficulties.map(diff => {
-                            return(
-                                <option key={diff}>{diff}</option>
-                            )
-                        })}
+                        {difficulties.map(diff => { return(<option key={diff}>{diff}</option>) })}
                     </select>
                 </div>
                 <div className="inputBox">
@@ -92,11 +86,7 @@ const CreateNewTaskForm = () => {
                 <div className="inputBox">
                     <label>Enter recipients name </label>
                     <select className="input" id="targetUser" value={recipient} onChange={e => setRecipient(e.target.value)}>
-                        {Object.keys(users).map(user => {
-                            return (
-                                <option key={user}>{user}</option>
-                            )
-                        })}
+                        {Object.keys(users).map(user => { return (<option key={user}>{user}</option>) })}
                     </select>
                 </div>
                 <button type="button" onClick={createTask}>Create task</button>
