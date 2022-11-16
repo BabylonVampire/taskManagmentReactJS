@@ -1,11 +1,13 @@
 import React from "react";
-import CreateNewTaskForm from "./CreateNewTaskForm";
-import LoginForm from "./LoginForm";
 import root from '../backend/rootRender';
+import LoginForm from "./LoginForm";
+import CreateNewTaskForm from "./CreateNewTaskForm";
 
 const BasePageForm = () => {
 
     const logOut = () => {
+        localStorage.setItem('username', JSON.stringify(''));
+        localStorage.setItem('password', JSON.stringify(''));
         root.render(
             <LoginForm/>
         );
@@ -17,10 +19,15 @@ const BasePageForm = () => {
         );
     }
 
+    const setings = () => {
+        return;
+    }
+
     return(
         <div className="buttonBox" id="interface">
-            <button type="button" onClick={logOut}>Log out</button>
-            <button type="button" onClick={createTask}>Create new task</button>
+            <button type="button" id="logout" onClick={logOut}>Log out</button>
+            <button type="button" id="taskcreation" onClick={createTask}>Create new task</button>
+            <button type="button" id="setings" onClick={setings}>setings</button>
         </div>
     )
 }

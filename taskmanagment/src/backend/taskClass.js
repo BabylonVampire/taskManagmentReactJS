@@ -1,7 +1,7 @@
-import TaskForm from '../components/TaskForm';
+import root from './rootRender';
 import {users, activeUser} from './users';
 import {ShowTasks} from './showAndCloseTasks';
-import root from './rootRender';
+import TaskForm from '../components/TaskForm';
 import BasePageForm from '../components/BasePageForm';
 
 let ID = {id: 0};

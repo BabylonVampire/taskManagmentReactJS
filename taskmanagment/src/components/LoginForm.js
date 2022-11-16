@@ -1,26 +1,41 @@
 import React, {useState} from "react";
-import BasePageForm from "./BasePageForm";
-import {users, activeUser} from '../backend/users';
-import RegistrationForm from "./RegistrationForm";
 import root from '../backend/rootRender';
+import {users, activeUser} from '../backend/users';
 import {ShowTasks} from "../backend/showAndCloseTasks";
+import BasePageForm from "./BasePageForm";
+import RegistrationForm from "./RegistrationForm";
 
 const LoginForm = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [checked, setChecked] = useState(false);
     const [warning, setWarning] = useState('');
+
+    const handleChange = () => {
+        setChecked(!checked);
+    }    
 
     const getLoginData = () => {
 
+        if (!username || !password) {
+            setWarning('All fields must be filled!');
+            return;
+        }
+
         if (!users[username]) {
-            setWarning('The user with the given name was not found. Check the entered data or register');
+            setWarning('The user with the given name was not found. Check the entered data or register!');
             return;
         }
     
         if (users[username].password !== password) {
-            setWarning('invalid password');
+            setWarning('invalid password!');
             return;
+        }
+
+        if (checked) {
+            localStorage.setItem('username', JSON.stringify(username));
+            localStorage.setItem('password', JSON.stringify(users[username].password));
         }
 
         activeUser.activeUser = username;
@@ -34,12 +49,11 @@ const LoginForm = () => {
     }
 
     const goToRegistrationPage = () => {
-
         root.render(
             <RegistrationForm/>
         );
     }
- 
+
     return(
         <div className="form" id="loginForm">
             <div className="fieldset">
@@ -50,7 +64,13 @@ const LoginForm = () => {
                 </div>
                 <div className="labelBox">
                     <label>Password: </label>
-                    <input className="input" type="text" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input className="input" type="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                </div>
+                <div className="labelBox">
+                <label id="forcheckbox">Remember me </label>
+                    <div className="checkbox">
+                        <input type="checkbox" id="checkbox" value={checked} onChange={handleChange}/>
+                    </div>
                 </div>
                 <div className="buttonBox">
                     <button type="button" onClick={getLoginData}>Login</button>

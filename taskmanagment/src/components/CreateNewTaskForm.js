@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {users, activeUser} from '../backend/users';
 import root from '../backend/rootRender';
-import BasePageForm from "./BasePageForm";
 import {Task, ID} from '../backend/taskClass';
+import {users, activeUser} from '../backend/users';
 import {ShowTasks} from "../backend/showAndCloseTasks";
+import BasePageForm from "./BasePageForm";
 
 const CreateNewTaskForm = () => {
 
@@ -46,7 +46,6 @@ const CreateNewTaskForm = () => {
 
         users[recipient].tasks.push(task);
     
-        //сортировка задач по приоритету
         users[activeUser.activeUser].tasks.sort((prev, next) => prev.priority() - next.priority());
 
         root.render(

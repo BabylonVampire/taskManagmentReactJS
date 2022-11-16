@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {users} from '../backend/users';
+import root from '../backend/rootRender';
 import User from '../backend/usersClass';
 import LoginForm from "./LoginForm";
-import root from '../backend/rootRender';
 
 const RegistrationForm = (props) => {
 
@@ -15,6 +15,7 @@ const RegistrationForm = (props) => {
     const [repPassword, setRepPassword] = useState('');
 
     const getRegistrationData = () => {
+
         const validateEmail = (email) => {
             return String(email)
               .toLowerCase()
@@ -22,19 +23,31 @@ const RegistrationForm = (props) => {
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
               );
         }
-    
-        if (!validateEmail(email)) {
-            setWarning('Email is incorrect!');
-            return;
+
+        const validatePassword = (password) => {
+            return String(password)
+              .match(
+                /(?=.*[0-9])(?=.*[!@#$%^-_&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&-_*]{6,}/
+              );
         }
     
         if (!name || !surname || !username || !email || !password || !repPassword) {
             setWarning('All fields must be filled!');
             return;
         }
+
+        if (!validateEmail(email)) {
+            setWarning('Email is incorrect!');
+            return;
+        }
     
         if (users[username]) {
             setWarning('Selected login is already in use!');
+            return;
+        }
+
+        if (!validatePassword(password)) {
+            setWarning('Password must be at least 6 characters long, including special characters, numbers, lowercase and uppercase letters!');
             return;
         }
     
@@ -81,11 +94,11 @@ const RegistrationForm = (props) => {
                 </div>
                 <div className="labelBox">
                     <label>Password: </label>
-                    <input className="input" type="text" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input className="input" type="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <div className="labelBox">
-                    <label>Password: </label>
-                    <input className="input" type="text" id="repeatPassword" value={repPassword} onChange={e => setRepPassword(e.target.value)}/>
+                    <label>Repeat password: </label>
+                    <input className="input" type="password" id="repeatPassword" value={repPassword} onChange={e => setRepPassword(e.target.value)}/>
                 </div>
                 <div className="buttonBox">
                     <button type="button" onClick={getRegistrationData}>Register</button>
